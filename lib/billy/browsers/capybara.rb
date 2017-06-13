@@ -30,6 +30,11 @@ module Billy
               "--proxy=#{Billy.proxy.host}:#{Billy.proxy.port}"
             ]
           }
+          # Stop PhantomJS outputting console messages when rspec runs
+          # This requires a class called Rails which responds to .logger
+          # and also a class called Rails::Railtie which responds to
+          # .railtie_name & .rake_tasks
+          options.merge!({phantomjs_logger: Rails.logger}) if defined?(Rails)
           ::Capybara::Poltergeist::Driver.new(app, options)
         end
       end

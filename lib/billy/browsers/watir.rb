@@ -1,5 +1,5 @@
 require 'billy'
-require 'watir-webdriver'
+require 'watir'
 
 module Billy
   module Browsers
